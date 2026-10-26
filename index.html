@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Bishkek Presentation</title>
+  <link rel="icon" type="image/x-icon" href="images/Flag_of_Kyrgyzstan.jpg">
+  <meta name="description"
+    content="Discovering the culture, history, and beauty of Bishkek, Kyrgyzstan. An interactive modern presentation.">
+
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="mode-presentation">
+
+  <!-- Minimalist Top Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="nav-left">
+      <div class="brand" id="nav-brand" role="button" tabindex="0">
+        <img class="brand-icon" src="images/Flag_of_Kyrgyzstan.jpg" alt="Flag of Kyrgyzstan" width="26" height="18"
+          style="border-radius:3px; object-fit:cover;">
+        <span class="brand-name">Bishkek</span>
+        <span class="brand-divider">/</span>
+        <span class="brand-country">Kyrgyzstan</span>
+      </div>
+    </div>
+
+    <!-- Presentation Progress Bar (Apple Keynote style) -->
+    <div class="deck-progress">
+      <div class="deck-progress-bar" id="deck-progress-bar"></div>
+    </div>
+
+    <div class="nav-right">
+      <!-- Bishkek Live Clock -->
+      <div class="nav-clock" id="nav-clock" title="Current time in Bishkek (UTC+6)">
+        <svg class="clock-icon" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor"
+          stroke-width="1.6">
+          <circle cx="8" cy="8" r="6.5" />
+          <path d="M8 4.5V8l2.5 1.5" />
+        </svg>
+        <span class="clock-label">Bishkek</span>
+        <span class="clock-time" id="bishkek-time">--:--:--</span>
+      </div>
+
+      <!-- Modern View Switcher (Deck / Story) -->
+      <div class="view-switch" role="group" aria-label="Display Mode">
+        <button class="switch-btn active" id="btn-mode-presentation">Deck</button>
+        <button class="switch-btn" id="btn-mode-scroll">Story</button>
+      </div>
+
+      <!-- Slide Overview Index -->
+      <button class="nav-btn" id="btn-toggle-grid" title="Slide Index (O)" aria-label="Slide Index">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+          <rect x="2" y="2" width="5" height="5" rx="1" />
+          <rect x="9" y="2" width="5" height="5" rx="1" />
+          <rect x="2" y="9" width="5" height="5" rx="1" />
+          <rect x="9" y="9" width="5" height="5" rx="1" />
+        </svg>
+      </button>
+
+      <!-- Fullscreen Toggle -->
+      <button class="nav-btn" id="btn-toggle-fullscreen" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7">
+          <path d="M2 5V2h3M14 5V2h-3M2 11v3h3M14 11v3h-3" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide Drawer Index -->
+  <aside class="slide-drawer" id="slide-drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <h4>Presentation Slides</h4>
+      <button class="drawer-close" id="btn-close-drawer" aria-label="Close">✕</button>
+    </div>
+    <div class="drawer-list" id="drawer-list">
+      <!-- Injected via JavaScript -->
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <!-- MAIN PRESENTATION CONTAINER -->
+  <main class="slides-viewport" id="slides-viewport">
+
+    <!-- ==========================================
+         SLIDE 1: HERO
+         ========================================== -->
+    <section class="slide active" id="slide-1" data-slide-index="1" data-slide-title="The Heart of Kyrgyzstan">
+      <div class="slide-backdrop">
+        <img src="images/hero.jpg" alt="Tian Shan Mountains Bishkek" class="backdrop-img">
+        <div class="backdrop-tint"></div>
+      </div>
+      <div class="slide-inner hero-layout">
+        <div class="hero-tag">KYRGYZSTAN · CENTRAL ASIA</div>
+        <h1 class="hero-title">BISHKEK</h1>
+        <p class="hero-subhead">The Heart of Kyrgyzstan</p>
+        <p class="hero-desc">Discovering the culture, history, and beauty of Central Asia.</p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" id="btn-start">
+            <span>Explore Presentation</span>
+            <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+              <path d="M6 3l5 5-5 5V3z" />
+            </svg>
+          </button>
+          <button class="btn btn-secondary" id="btn-overview-trigger">
+            <span>View All Slides</span>
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-pill"><strong>800 m</strong><span>Altitude</span></div>
+          <div class="stat-pill"><strong>1878</strong><span>Founded</span></div>
+          <div class="stat-pill"><strong>Chüy Valley</strong><span>Region</span></div>
+          <div class="stat-pill"><strong>Tian Shan</strong><span>Mountains</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 2: ORIENTATION
+         ========================================== -->
+    <section class="slide" id="slide-2" data-slide-index="2" data-slide-title="Where Is Bishkek?">
+      <div class="slide-backdrop">
+        <img src="images/orientation.jpg" alt="Chüy Valley Bishkek" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner split-layout">
+        <div class="split-text">
+          <span class="slide-label">ORIENTATION</span>
+          <h2 class="slide-heading">Where Is Bishkek?</h2>
+          <div class="slide-badges">
+            <span class="badge">BISHKEK</span>
+            <span class="badge">CHÜY VALLEY</span>
+            <span class="badge">TIAN SHAN FOOTHILLS</span>
+          </div>
+          <p class="lead-text">
+            Bishkek sits in the sunlit <strong>Chüy Valley</strong>, right at the base of the majestic <strong>Tian Shan
+              mountains</strong>.
+          </p>
+          <p class="body-text">
+            Snow-capped mountain peaks rise directly behind the city streets. Thanks to fresh glacial rivers and fertile
+            land, the valley has welcomed travelers and trade caravans for hundreds of years.
+          </p>
+
+          <div class="quick-facts-box">
+            <div class="fact-row">
+              <span class="fact-label">Location:</span>
+              <span class="fact-val">Northern Kyrgyzstan, Central Asia</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Setting:</span>
+              <span class="fact-val">Foothills of the Kyrgyz Ala-Too range</span>
+            </div>
+            <div class="fact-row">
+              <span class="fact-label">Elevation:</span>
+              <span class="fact-val">About 800 meters (2,600 feet) above sea level</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-media">
+          <div class="media-card">
+            <img src="images/alaarcha.jpg" alt="Tian Shan Mountains near Bishkek" class="card-photo">
+            <div class="card-caption">
+              <strong>The Tian Shan Ridge</strong>
+              <span>Snowy peaks rise above the city's southern skyline every day.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 3: A CITY WITH LAYERS
+         ========================================== -->
+    <section class="slide" id="slide-3" data-slide-index="3" data-slide-title="Visual Representation Of Communication">
+      <div class="slide-backdrop">
+        <img src="images/museum.jpg" alt="State Historical Museum Bishkek" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner video-slide-inner">
+        <div class="video-wrapper">
+          <video class="presentation-video" id="slide-video" controls playsinline preload="auto">
+            <source src="images/videoplayback.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 4: CULTURE IN THE PRESENT
+         ========================================== -->
+    <section class="slide" id="slide-4" data-slide-index="4" data-slide-title="Traditions That Endure">
+      <div class="slide-backdrop">
+        <img src="images/culture.jpg" alt="Kyrgyz Yurts in mountains" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner">
+        <div class="slide-header">
+          <span class="slide-label">CULTURE IN THE PRESENT</span>
+          <h2 class="slide-heading">Traditions That Endure</h2>
+          <p class="slide-intro">
+            Nomadic heritage remains central to Kyrgyz cultural identity. The white felt kalpak is a recognizable
+            cultural symbol. Yurts, felt craft, hospitality, communal meals, music, and storytelling connect past and
+            present.
+          </p>
+        </div>
+
+        <div class="three-cards-grid">
+          <!-- Card 1 -->
+          <div class="feature-card">
+            <div class="feature-image-wrap">
+              <img src="images/yurt.jpg" alt="Nomadic Yurt" class="feature-img">
+            </div>
+            <div class="feature-body">
+              <span class="feature-tag">NOMADIC HERITAGE</span>
+              <h3 class="feature-title">Yurts & Harmony</h3>
+              <p class="feature-text">
+                The round yurt (<em>boz üy</em>) is a symbol of family, hearth, and living in balance with nature. Its
+                crown is on the national flag.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="feature-card">
+            <div class="feature-image-wrap">
+              <img src="images/kalpak.jpg" alt="Kyrgyz White Kalpak Hat" class="feature-img">
+            </div>
+            <div class="feature-body">
+              <span class="feature-tag">CRAFTSMANSHIP</span>
+              <h3 class="feature-title">The Felt Kalpak</h3>
+              <p class="feature-text">
+                The white felt kalpak has four peaks representing the Tian Shan mountains. It is worn with pride as an
+                emblem of dignity.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="feature-card">
+            <div class="feature-image-wrap">
+              <img src="images/beshbarmak.jpg" alt="Kyrgyz Feast Hospitality" class="feature-img">
+            </div>
+            <div class="feature-body">
+              <span class="feature-tag">HOSPITALITY</span>
+              <h3 class="feature-title">Warm Welcome</h3>
+              <p class="feature-text">
+                Guests are welcomed like family. Fresh hot bread, tea, communal meals, and music on the komuz bring
+                people together.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 5: CITY GUIDE
+         ========================================== -->
+    <section class="slide" id="slide-5" data-slide-index="5" data-slide-title="Four Places Worth Discovering">
+      <div class="slide-backdrop">
+        <img src="images/alatoo.jpg" alt="Ala-Too Square" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner">
+        <div class="slide-header">
+          <span class="slide-label">CITY GUIDE</span>
+          <h2 class="slide-heading">Four Places Worth Discovering</h2>
+        </div>
+
+        <div class="places-grid">
+          <!-- Place 1 -->
+          <div class="place-item" data-place-target="alatoo">
+            <div class="place-photo-box">
+              <img src="images/alatoo.jpg" alt="Ala-Too Square" class="place-photo">
+            </div>
+            <div class="place-info">
+              <h3>Ala-Too Square</h3>
+              <p class="place-short">Civic life, celebrations, and public gatherings.</p>
+              <span class="place-note">The main square with fountains and the national flagpole.</span>
+            </div>
+          </div>
+
+          <!-- Place 2 -->
+          <div class="place-item" data-place-target="museum">
+            <div class="place-photo-box">
+              <img src="images/museum.jpg" alt="State Historical Museum" class="place-photo">
+            </div>
+            <div class="place-info">
+              <h3>State Historical Museum</h3>
+              <p class="place-short">Heritage, history, and national identity.</p>
+              <span class="place-note">Thousands of artifacts from the Silk Road to today.</span>
+            </div>
+          </div>
+
+          <!-- Place 3 -->
+          <div class="place-item" data-place-target="bazaar">
+            <div class="place-photo-box">
+              <img src="images/bazaar.jpg" alt="Osh Bazaar" class="place-photo">
+            </div>
+            <div class="place-info">
+              <h3>Osh Bazaar</h3>
+              <p class="place-short">Produce, spices, foods, textiles, and commerce.</p>
+              <span class="place-note">Bustling rows of fresh bread, dried fruit, and crafts.</span>
+            </div>
+          </div>
+
+          <!-- Place 4 -->
+          <div class="place-item" data-place-target="oakpark">
+            <div class="place-photo-box">
+              <img src="images/oakpark.jpg" alt="Oak Park" class="place-photo">
+            </div>
+            <div class="place-info">
+              <h3>Oak Park</h3>
+              <p class="place-short">Mature trees, sculptures, and a relaxed urban retreat.</p>
+              <span class="place-note">Shaded green park with open-air stone sculptures.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 6: ALA-ARCHA NATIONAL PARK
+         ========================================== -->
+    <section class="slide" id="slide-6" data-slide-index="6" data-slide-title="Where the Mountains Begin">
+      <div class="slide-backdrop">
+        <img src="images/alaarcha.jpg" alt="Ala-Archa National Park" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner split-layout">
+        <div class="split-text">
+          <span class="slide-label">ALA-ARCHA NATIONAL PARK · NEAR BISHKEK</span>
+          <h2 class="slide-heading">Where the Mountains Begin</h2>
+          <p class="lead-text">
+            A nearby gateway to Tian Shan valleys, rivers, trails, alpine meadows, and rugged peaks.
+          </p>
+          <p class="body-text">
+            Located only 45 minutes south of Bishkek, Ala-Archa lets you step straight from the capital into pristine
+            alpine nature. Clear rivers rush through pine canyons, and peaks climb over 4,800 meters.
+          </p>
+
+          <div class="mountain-bullets">
+            <div class="m-bullet">
+              <span class="m-icon">✦</span>
+              <div>
+                <strong>Alpine Day Hikes:</strong>
+                <span>Trails lead to scenic waterfalls, river lookouts, and stone huts.</span>
+              </div>
+            </div>
+            <div class="m-bullet">
+              <span class="m-icon">✦</span>
+              <div>
+                <strong>Wild Peaks:</strong>
+                <span>Famous across Central Asia for mountaineering and climbing.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="split-media">
+          <div class="media-card">
+            <img src="images/alaarcha.jpg" alt="Ala-Archa Gorge" class="card-photo">
+            <div class="card-caption">
+              <strong>Ala-Archa Gorge</strong>
+              <span>Just 40 kilometers from downtown Bishkek.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 7: EVERYDAY BISHKEK
+         ========================================== -->
+    <section class="slide" id="slide-7" data-slide-index="7" data-slide-title="A City in Motion">
+      <div class="slide-backdrop">
+        <img src="images/alatoo.jpg" alt="Everyday Bishkek" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner">
+        <div class="slide-header">
+          <span class="slide-label">EVERYDAY BISHKEK</span>
+          <h2 class="slide-heading">A City in Motion</h2>
+          <p class="slide-intro">Public and social life across the city.</p>
+        </div>
+
+        <div class="city-life-grid">
+          <div class="city-life-box">
+            <span class="box-num">01</span>
+            <h3>Government & Economy</h3>
+            <p>Political, administrative, and economic centre of Kyrgyzstan.</p>
+          </div>
+
+          <div class="city-life-box">
+            <span class="box-num">02</span>
+            <h3>Architectural Mix</h3>
+            <p>Soviet-era buildings sit alongside newer residential and commercial development.</p>
+          </div>
+
+          <div class="city-life-box">
+            <span class="box-num">03</span>
+            <h3>Daily Rhythm</h3>
+            <p>Markets, cafés, parks, universities, and public squares shape everyday life.</p>
+          </div>
+
+          <div class="city-life-box">
+            <span class="box-num">04</span>
+            <h3>Languages & Voices</h3>
+            <p>Kyrgyz and Russian both matter in the city's public and social environment.</p>
+          </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 8: A YEAR IN FOUR FRAMES
+         ========================================== -->
+    <section class="slide" id="slide-8" data-slide-index="8" data-slide-title="Four Seasons, Four Experiences">
+      <div class="slide-backdrop">
+        <img src="images/autumn.jpg" alt="Seasons of Bishkek" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner">
+        <div class="slide-header">
+          <span class="slide-label">A YEAR IN FOUR FRAMES</span>
+          <h2 class="slide-heading">Four Seasons, Four Experiences</h2>
+        </div>
+
+        <div class="seasons-row">
+          <!-- Spring -->
+          <div class="season-panel">
+            <div class="season-photo-wrap">
+              <img src="images/spring.jpg" alt="Spring in Bishkek" class="season-img">
+            </div>
+            <div class="season-text">
+              <h3>Spring</h3>
+              <p class="season-highlight">Warming days, blossoms, greener parks.</p>
+              <span class="season-detail">City comes to life with blooming trees and outdoor events.</span>
+            </div>
+          </div>
+
+          <!-- Summer -->
+          <div class="season-panel">
+            <div class="season-photo-wrap">
+              <img src="images/summer.jpg" alt="Summer in Bishkek" class="season-img">
+            </div>
+            <div class="season-text">
+              <h3>Summer</h3>
+              <p class="season-highlight">Warm weather, city exploration, mountain excursions.</p>
+              <span class="season-detail">Warm sunny days perfect for heading into cool mountain gorges.</span>
+            </div>
+          </div>
+
+          <!-- Autumn -->
+          <div class="season-panel">
+            <div class="season-photo-wrap">
+              <img src="images/autumn.jpg" alt="Autumn in Bishkek" class="season-img">
+            </div>
+            <div class="season-text">
+              <h3>Autumn</h3>
+              <p class="season-highlight">Cooler air, colourful foliage, comfortable sightseeing.</p>
+              <span class="season-detail">Golden trees across Oak Park and crisp, clear mountain views.</span>
+            </div>
+          </div>
+
+          <!-- Winter -->
+          <div class="season-panel">
+            <div class="season-photo-wrap">
+              <img src="images/winter.jpg" alt="Winter in Bishkek" class="season-img">
+            </div>
+            <div class="season-text">
+              <h3>Winter</h3>
+              <p class="season-highlight">Cold weather, possible snow, a different view of city and mountains.</p>
+              <span class="season-detail">Snow-capped peaks and cozy hot tea in welcoming cafés.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 9: VIDEO PRESENTATION
+         ========================================== -->
+    <section class="slide" id="slide-9" data-slide-index="9" data-slide-title="Visual Representation Of Communication">
+      <div class="slide-backdrop">
+        <img src="images/alatoo.jpg" alt="Bishkek Kyrgyzstan" class="backdrop-img">
+        <div class="backdrop-tint dark"></div>
+      </div>
+      <div class="slide-inner video-slide-inner">
+        <div class="video-wrapper">
+          <video class="presentation-video" id="slide-video-2" controls playsinline preload="auto">
+            <source src="images/videoplayback2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 10: THANK YOU
+         ========================================== -->
+    <section class="slide" id="slide-10" data-slide-index="10" data-slide-title="Thank You">
+      <div class="slide-backdrop">
+        <img src="images/hero.jpg" alt="Bishkek Kyrgyzstan" class="backdrop-img">
+        <div class="backdrop-tint"></div>
+      </div>
+      <div class="slide-inner thank-you-layout">
+        <div class="hero-tag">KYRGYZSTAN · CENTRAL ASIA</div>
+        <h2 class="thank-you-title">THANK YOU</h2>
+        <p class="thank-you-subhead">Рахмат · Thank you for exploring Bishkek</p>
+        <p class="thank-you-text">
+          Where nomadic hospitality, Silk Road history, and snow-capped mountain peaks welcome you to the heart of
+          Central Asia.
+        </p>
+
+        <div class="thank-you-controls">
+          <button class="btn btn-primary" id="btn-restart">
+            <span>Restart Presentation</span>
+          </button>
+          <button class="btn btn-secondary" id="btn-read-story">
+            <span>Switch to Story Mode</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modern Floating Bottom Deck Bar -->
+  <footer class="deck-bar" id="deck-bar">
+    <div class="bar-left">
+      <button class="bar-nav-btn" id="btn-prev" aria-label="Previous Slide">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+          <path d="M10 13L5 8l5-5v10z" />
+        </svg>
+      </button>
+      <div class="bar-counter">
+        <span id="slide-curr">01</span>
+        <span class="bar-divider">/</span>
+        <span id="slide-total">10</span>
+      </div>
+      <button class="bar-nav-btn" id="btn-next" aria-label="Next Slide">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+          <path d="M6 3l5 5-5 5V3z" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="bar-center">
+      <span class="bar-title" id="bar-slide-title">The Heart of Kyrgyzstan</span>
+    </div>
+
+    <div class="bar-right">
+      <span class="hint-key"><kbd>←</kbd> <kbd>→</kbd> Navigate</span>
+      <span class="hint-key"><kbd>Space</kbd> Next</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
